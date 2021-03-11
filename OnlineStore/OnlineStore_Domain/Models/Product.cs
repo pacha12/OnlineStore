@@ -13,5 +13,6 @@ namespace OnlineStore_Domain.Models
         public int Cost { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
+        public IList<Review> Reviews { get; set; }
     }
 }

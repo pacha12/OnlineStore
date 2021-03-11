@@ -15,5 +15,12 @@ namespace OnlineStore_Core.Context
         public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
         DbSet<Product> Products { get; set; }
         DbSet<ProductProperties> ProductProperties { get; set; }
+        DbSet<Order> Orders { get; set; }
+        DbSet<Review> Reviews { get; set; }
+        DbSet<History> Historyes { get; set; }
+        //protected override void OnModelCreating(ModelBuilder builder)
+        //{
+        //    base.OnModelCreating(builder);
+        //}
     }
 }
