@@ -12,7 +12,10 @@ namespace OnlineStore_Core.Context
 {
     public class StoreContext : IdentityDbContext<User, Role, Guid>
     {
-        public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
+        public StoreContext(DbContextOptions<StoreContext> options) : base(options)
+        {
+            Database.EnsureCreated();
+        }
         DbSet<Product> Products { get; set; }
         DbSet<ProductProperties> ProductProperties { get; set; }
         DbSet<Order> Orders { get; set; }

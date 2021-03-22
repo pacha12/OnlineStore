@@ -70,7 +70,7 @@ namespace OnlineStore_UI.Controllers
             return StatusCode(500);
 
         }
-        [HttpPost]
+        //[HttpPost] 
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Logout(string returnUrl = "")
         {

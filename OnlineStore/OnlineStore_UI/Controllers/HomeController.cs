@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OnlineStore_BLL.Services.Interfaces;
 using OnlineStore_UI.Models;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,16 @@ namespace OnlineStore_UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IEmailSender _emailSender;
+        public HomeController(ILogger<HomeController> logger, IEmailSender emailSender)
         {
             _logger = logger;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
         {
+            _emailSender.SendEmailAsync("shagpacha@gmail.com", "Some", "Some Text");
             return View();
         }
 
