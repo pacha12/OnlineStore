@@ -15,4 +15,10 @@
     <ProjectReference Include="..\OnlineStore_Domain\OnlineStore_Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\Logo.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -22,7 +22,7 @@ namespace OnlineStore_UI.Controllers
 
         public IActionResult Index()
         {
-            _emailSender.SendEmailAsync("shagpacha@gmail.com", "Some", "Some Text");
+            //_emailSender.SendEmailAsync("shagpacha@gmail.com", "Some", "Some Text");
             return View();
         }
 
