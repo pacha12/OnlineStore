@@ -6,56 +6,317 @@
     <title>@ViewData["Title"] - OnlineStore_UI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
+    <style>
+        .header-area {
+            background: none repeat scroll 0 0 #f4f4f4;
+        }
+
+            .header-area a {
+                color: #888;
+            }
+
+        .main-area {
+            background: none repeat scroll 0 0 #1abc9c;
+        }
+
+            .main-area a {
+                color: #888;
+            }
+
+        .user-menu, .header-right ul.list-inline {
+            text-align: center;
+        }
+
+            .user-menu ul {
+                list-style: outside none none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .user-menu li {
+                display: inline-block;
+            }
+
+                .user-menu li a {
+                    display: block;
+                    font-size: 13px;
+                    margin-right: 5px;
+                    padding: 10px;
+                }
+
+                    .user-menu li a i.fa {
+                        margin-right: 5px;
+                    }
+
+        .logo h1 {
+            font-size: 40px;
+            margin: 40px 0;
+            font-weight: 400;
+        }
+
+            .logo h1 a {
+                color: #999;
+            }
+
+                .logo h1 a:hover {
+                    text-decoration: none;
+                    opacity: .7
+                }
+
+                .logo h1 a span {
+                    color: #1abc9c;
+                }
+
+        .shopping-item {
+            border: 1px solid #ddd;
+            float: right;
+            font-size: 18px;
+            margin-top: 40px;
+            padding: 10px;
+            position: relative;
+        }
+
+            .shopping-item a {
+                color: #666;
+            }
+
+            .shopping-item i.fa {
+                margin-left: 15px;
+            }
+
+
+            .shopping-item:hover {
+                background: none repeat scroll 0 0 #1abc9c;
+                border-color: #1abc9c;
+            }
+
+                .shopping-item:hover a {
+                    color: #fff;
+                    text-decoration: none
+                }
+
+                .shopping-item:hover .cart-amunt {
+                    color: #fff;
+                }
+
+                .shopping-item:hover .product-count {
+                    background: none repeat scroll 0 0 #000;
+                }
+
+
+
+        .main-item:hover a {
+            color: #fff;
+            text-decoration: none
+        }
+
+        .main-item:hover {
+            background: none repeat scroll 0 0 #1abc9c;
+            border-color: #1abc9c;
+        }
+
+
+
+
+        .cart-amunt {
+            color: #1abc9c;
+            font-weight: 700;
+        }
+
+        .header-right ul.list-inline {
+            margin: 0;
+            text-align: right;
+        }
+
+            .header-right ul.list-inline li a {
+                display: block;
+                padding: 9px;
+            }
+
+            .header-right ul.list-inline li ul a {
+                padding: 5px 15px;
+            }
+
+            .header-right ul.list-inline li ul {
+                border: medium none;
+                border-radius: 0;
+                left: 50%;
+                margin-left: -50px;
+                min-width: 100px;
+                text-align: center;
+            }
+
+        .navbar-header {
+            text-align: center;
+        }
+
+        .navbar-toggle {
+            border-color: #fff;
+            float: none;
+            margin: 10px auto;
+        }
+
+            .navbar-toggle .icon-bar {
+                background: none repeat scroll 0 0 #fff
+            }
+
+            .navbar-toggle .icon-bar {
+                background: none repeat scroll 0 0 #fff
+            }
+
+        .navbar-collapse.collapse.in {
+            background: none repeat scroll 0 0 #1abc9c;
+            position: relative;
+            z-index: 99;
+        }
+
+        .product-count {
+            background: none repeat scroll 0 0 #1abc9c;
+            border-radius: 50%;
+            color: #fff;
+            display: inline-block;
+            font-size: 10px;
+            height: 20px;
+            padding-top: 2px;
+            position: absolute;
+            right: -10px;
+            text-align: center;
+            top: -10px;
+            width: 20px;
+        }
+
+        .mainmenu-area ul.navbar-nav li a {
+            color: #fff;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 20px;
+            float:left;
+        }
+
+        .mainmenu-area ul.navbar-nav li:hover a, .mainmenu-area ul.navbar-nav li.active a {
+            background: #222
             
-            <div class="container">
-               
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        
-                        <li class="nav-item">
-                            <img class="navbar-light" style="height:100px; width:100px" src="~/Images/Logo.png" />
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" style="font-size:20px" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
-                        </li>
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" style="font-size:20px" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" style="font-size:20px" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" style="font-size:20px" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                    </ul>
+        }
+
+        .mainmenu-area .nav > li > a:focus {
+            color: #000
+        }
+
+        .mainmenu-area {
+            background: none repeat scroll 0 0 #1abc9c;
+            font-family: "Roboto Condensed",sans-serif;
+            text-transform: uppercase;
+            width: 100%;
+            z-index: 999;
+        }
+
+            .mainmenu-area ul.navbar-nav li a {
+                padding: 15px;
+            }
+
+       
+
+            .mainmenu-area ul.navbar-nav li a {
+                font-size: 14px;
+                padding: 15px 10px;
+            }
+
+            .mainmenu-area ul.navbar-nav li a {
+                color: #fff;
+                font-size: 16px;
+                font-weight: 700;
+                padding: 20px;
+            }
+       
+
+    </style>
+</head>
+
+<body>
+    <div class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="user-menu">
+                        <ul>
+                            <li><img src="~/Images/Logo.png" style="width:40px" /></li>
+                            <li class="main-item"><a href="#"> Wishlist</a></li>
+                            <li class="main-item"><a href="cart.html"> My Cart</a></li>
+                            <li class="main-item"><a href="checkout.html"> Checkout</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="header-right">
+                        <div class="user-menu">
+                            <ul>
+
+                                <li class="main-item"><a href="cart.html">Login</a></li>
+                                <li class="main-item"><a href="checkout.html">Register</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </nav>
-        </header>
-        <div class="container">
-            <main role="main" class="pb-3">
-                @RenderBody()
-            </main>
         </div>
+    </div> <!-- End header area -->
 
-    <footer class="border-top footer text-muted">
+    <div class="site-branding-area">
         <div class="container">
-            &copy; 2021 - OnlineStore_UI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="logo">
+
+                        <h1><a href="index.html">T<span>echno</span></a></h1>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="shopping-item">
+                        <a href="cart.html">Cart - <span class="cart-amunt">$800</span> <img src="~/Images/basket.png" style="width:30px" /> <span class="product-count">5</span></a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div> <!-- End site branding area -->
+
+
+    <div class="mainmenu-area">
+        <div class="row">
+            <ul class="nav navbar-nav" >
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop page</a></li>
+                <li><a href="single-product.html">Single product</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
+                <li><a href="#">Category</a></li>
+                <li><a href="#">Others</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    @RenderBody();
+
+
+
+
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
     @await RenderSectionAsync("Scripts", required: false)
+    @*/<script>
+            $("li").mouseover(function () {
+                $("this").children().attr({ style: "font-size: 100px" })
+            })
+        </script>
+    *@
 </body>
 </html>

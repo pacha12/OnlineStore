@@ -31,9 +31,7 @@ namespace OnlineStore_BLL.Services
                 PlainTextContent = htmlMessage
             };
             message.AddTo(email);
-
-            var res= _sendGridClient.SendEmailAsync(message).Result;
-
+            _sendGridClient.SendEmailAsync(message);
 
         }
     }
