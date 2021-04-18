@@ -13,6 +13,5 @@ namespace OnlineStore_UI.Models
         [Required]
         public string Password { get; set; }
 
-
     }
 }

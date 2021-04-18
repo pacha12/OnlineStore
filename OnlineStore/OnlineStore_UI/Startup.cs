@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using OnlineStore_BLL.Infrastructure;
 using OnlineStore_BLL.Services;
 using OnlineStore_BLL.Services.Interfaces;
+using OnlineStore_Core.Repositores;
+using OnlineStore_Core.Repositores.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +34,8 @@ namespace OnlineStore_UI
             Configuration.GetSection("SendGridOptions").Bind(option);
             services.AddTransient<SendGridOptions>(x => option);
             //services.Configure<SendGridOptions>(op => Configuration.GetSection("SendGridOptions"));
-
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IEmailSender, EmailSender>();
         }
 

@@ -34,7 +34,7 @@ namespace OnlineStore_UI.Controllers
         {
             if (!TryValidateModel(model)) return StatusCode(500);
 
-            var user = new User() { Email = model.Login, UserName = model.Login, EmailConfirmed = true };
+            var user = new User() { Email = model.Login, UserName = model.Login, EmailConfirmed = true};
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded) return StatusCode(500);
@@ -68,7 +68,6 @@ namespace OnlineStore_UI.Controllers
             if (!TryValidateModel(model)) return StatusCode(500);
 
             var result = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe, false);
-
             if (result.Succeeded)
             {
                 return RedirectToAction("Index", "Home");

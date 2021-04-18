@@ -1,0 +1,32 @@
+﻿@model List<OnlineStore_Domain.Models.Product>
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+
+            @foreach (var product in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card mb-4 box-shadow">
+                        <img class="card-img-top" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" src="@product.ImagePath" data-holder-rendered="true">
+                        <div class="card-body">
+                            <p class="card-text">@product.Name</p>
+                            <h1 class="card-title pricing-card-title">@(product.Cost-((product.Cost/100)*product.Discount)) ₴<small class="text-muted">/ @product.Cost ₴</small></h1>
+                            <p class="card-text">@product.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-outline-success btn-sm">Add</button>
+                                    <button type="button" class="btn btn-outline-success btn-sm">About</button>
+                                </div>
+                                <small class="text-muted">
+                                    @product.Count in stock
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

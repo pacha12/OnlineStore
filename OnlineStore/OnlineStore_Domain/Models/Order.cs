@@ -11,5 +11,9 @@ namespace OnlineStore_Domain.Models
         public int Id { get; set; }
         public IList<Product> Products { get; set; }
         public DateTime SaleDate { get; set; }
+        public string DeliverySity { get; set; }
+        public string deliveryAdress { get; set; }
+        public string Poshta { get; set; }
+        public string PostOffice { get; set; }
     }
 }
