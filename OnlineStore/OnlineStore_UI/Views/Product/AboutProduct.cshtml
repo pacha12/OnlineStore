@@ -1,0 +1,13 @@
+﻿@model OnlineStore_Domain.Models.Product
+
+@if (Model.ProductProperties.Count > 0)
+{
+    foreach (var productProperties in Model.ProductProperties)
+    {
+        <p>@productProperties.Name ----- @productProperties.Value</p>
+
+
+
+    }
+}
+

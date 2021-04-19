@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineStore_BLL.Services;
 using OnlineStore_BLL.Services.Interfaces;
 using OnlineStore_Domain.Models.Identity;
 using OnlineStore_UI.Models;
@@ -12,16 +15,19 @@ namespace OnlineStore_UI.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IProductService _productService;
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly RoleManager<Role> _roleManager;
         private readonly IEmailSender _emailSender;
-        public AccountController(IEmailSender emailSender, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<Role> roleManager)
+
+        public AccountController(IEmailSender emailSender, UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<Role> roleManager, IProductService productService)
         {
             this._signInManager = signInManager;
             this._userManager = userManager;
             this._roleManager = roleManager;
             this._emailSender = emailSender;
+            this._productService = productService;
         }
 
         [HttpGet]
@@ -34,7 +40,7 @@ namespace OnlineStore_UI.Controllers
         {
             if (!TryValidateModel(model)) return StatusCode(500);
 
-            var user = new User() { Email = model.Login, UserName = model.Login, EmailConfirmed = true};
+            var user = new User() { Email = model.Login, UserName = model.Login, EmailConfirmed = true, Basket = new OnlineStore_Domain.Models.Basket() };
             var result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded) return StatusCode(500);
@@ -122,7 +128,16 @@ namespace OnlineStore_UI.Controllers
             //todo add view changePassword Success
             return Redirect("/home/index");
         }
+        [Authorize]
+        public async Task<IActionResult> AddInBasket(int productId)
+        {
+            var users = _userManager.Users.Include(x => x.Basket);
+            var tmp = users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            tmp.Basket.Products.Add(_productService.GetProductsAsync().Result.FirstOrDefault(x => x.Id == productId));
+            await _userManager.UpdateAsync(tmp);
+            return Redirect("/home/index");
+        }
 
-       
+
     }
 }

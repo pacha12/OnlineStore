@@ -1,0 +1,9 @@
+﻿@model OnlineStore_Domain.Models.Identity.User
+
+
+<h1 style="font-size:20px">
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Model.Basket.Products.Count
+    }
+</h1>

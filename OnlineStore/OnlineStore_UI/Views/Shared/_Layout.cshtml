@@ -13,91 +13,7 @@
 
 
 <body>
-    @*
-        <nav class="site-header sticky-top py-1" style="background-color:chartreuse">
 
-            <div class="container d-flex flex-column flex-md-row justify-content-between">
-
-                <nav class="navbar navbar-expand navbar-light navbar-bg">
-                    <img src="~/Images/Logo.png" height="60px" />
-
-                    <ul class="navbar-nav" style="margin-left:1000px">
-                        <li class="nav-item px-2 dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Mega menu
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-left dropdown-mega" aria-labelledby="servicesDropdown">
-                                <div class="d-md-flex align-items-start justify-content-start">
-                                    <div class="dropdown-mega-list">
-                                        <div class="dropdown-header">UI Elements</div>
-                                        <a class="dropdown-item" href="#">Alerts</a>
-                                        <a class="dropdown-item" href="#">Buttons</a>
-                                        <a class="dropdown-item" href="#">Cards</a>
-                                        <a class="dropdown-item" href="#">Carousel</a>
-                                        <a class="dropdown-item" href="#">General</a>
-                                        <a class="dropdown-item" href="#">Grid</a>
-                                        <a class="dropdown-item" href="#">Modals</a>
-                                        <a class="dropdown-item" href="#">Tabs</a>
-                                        <a class="dropdown-item" href="#">Typography</a>
-                                    </div>
-                                    <div class="dropdown-mega-list">
-                                        <div class="dropdown-header">Forms</div>
-                                        <a class="dropdown-item" href="#">Layouts</a>
-                                        <a class="dropdown-item" href="#">Basic Inputs</a>
-                                        <a class="dropdown-item" href="#">Input Groups</a>
-                                        <a class="dropdown-item" href="#">Advanced Inputs</a>
-                                        <a class="dropdown-item" href="#">Editors</a>
-                                        <a class="dropdown-item" href="#">Validation</a>
-                                        <a class="dropdown-item" href="#">Wizard</a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="navbar-collapse collapse">
-                        <ul class="navbar-nav navbar-align">
-                            <li class="nav-item dropdown">
-                                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-toggle="dropdown">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings align-middle"><circle cx="12" cy="12" r="3"></circle></svg>
-                                </a>
-
-                                <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-toggle="dropdown" aria-expanded="false">
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <img src="https://www.meme-arsenal.com/memes/0b37d82bcfd11cb3196fa5329f3bff0f.jpg" width="40px" class="avatar img-fluid rounded-circle mr-1" alt="Chris Wood"> <span class="text-dark">@User.Identity.Name</span>
-                                    }
-                                    else
-                                    {
-                                        <img src="https://www.meme-arsenal.com/memes/0b37d82bcfd11cb3196fa5329f3bff0f.jpg" width="40px" class="avatar img-fluid rounded-circle mr-1" alt="Chris Wood"> <span class="text-dark">...</span>
-                                    }
-
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="pages-profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-middle mr-1"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Profile</a>
-
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Help</a>
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <a class="dropdown-item" href="#">Sign out</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="dropdown-item" href="#">Login</a>
-                                        <a class="dropdown-item" href="#">Register</a>
-                                    }
-
-
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                </nav>
-            </div>
-        </nav>
-    *@
     <header>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="#">Techno</a>
@@ -126,10 +42,25 @@
                         </li>
                     }
                 </ul>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right:5px; height:40px">
+                    <div class="d-flex flex-row bd-highlight mb-3 flex-wrap">
+                        <img src="~/Images/basket.png" height="30" /><div id="countInBasket"></div>
+                    </div>
+                </button>
                 <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="SearchProducst()">Search</button>
                 </form>
+
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Запустить модальное окно
+                </button>
+
+
+
+
             </div>
         </nav>
     </header>
@@ -148,8 +79,26 @@
     </div>
 
 
-
-
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">About</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="about">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -174,6 +123,38 @@
 
 
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        function SearchProducst () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Content("/Product/GetSearchProducts")',
+                dataType: "json",
+                data: {
+                    "search": $('#search').val()
+                },
+                success: function (data) {
+                    $('#divProduct').html(data);
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function About(button) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Content("/Product/AboutProduct")',
+                dataType: "json",
+                data: {
+                    "productId": parseInt($(button).attr("name"))
+                },
+                success: function (data) {
+                    $('#about').html(data);
+                    debugger
+                }
+            });
+        }
+    </script>
 
     <script>
         function categories(button) {
@@ -191,23 +172,32 @@
         }
     </script>
 
+
     <script>
         $(function () {
             $.ajax({
-                type: 'POST',
+                type: 'GET',
                 url: '@Url.Content("~/Product/GetProducts")',
                 success: function (data) {
                     $('#divProduct').html(data);
                 }
             });
-             $.ajax({
-                  type: 'GET',
-                  url: '@Url.Content("~/Product/GetCategory")',
-                  success: function (data) {
-                     $('#divCategory').html(data);
-                     }
-                 });
-             })
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Content("~/Product/GetCategory")',
+                success: function (data) {
+                    $('#divCategory').html(data);
+                }
+            });
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Content("~/Product/GetBasket")',
+                success: function (data) {
+                    $('#countInBasket').html(data);
+                }
+            })
+        });
         @* $('#LoadButton').click(function () {
             $.ajax({
                 type: 'POST',
