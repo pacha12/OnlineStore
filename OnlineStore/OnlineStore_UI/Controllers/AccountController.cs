@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OnlineStore_BLL.Services;
 using OnlineStore_BLL.Services.Interfaces;
+using OnlineStore_Domain.Models;
 using OnlineStore_Domain.Models.Identity;
 using OnlineStore_UI.Models;
 using System;
@@ -128,13 +129,24 @@ namespace OnlineStore_UI.Controllers
             //todo add view changePassword Success
             return Redirect("/home/index");
         }
-        [Authorize]
         public async Task<IActionResult> AddInBasket(int productId)
         {
-            var users = _userManager.Users.Include(x => x.Basket);
-            var tmp = users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-            tmp.Basket.Products.Add(_productService.GetProductsAsync().Result.FirstOrDefault(x => x.Id == productId));
-            await _userManager.UpdateAsync(tmp);
+            if (User.Identity.IsAuthenticated)
+            {
+                var users = _userManager.Users.Include(x => x.Basket).Include(x => x.Basket.BasketItems);
+                var tmp = users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+                foreach (var product in tmp.Basket.BasketItems)
+                {
+                    if (product.Id == productId)
+                    {
+                        product.Count++;
+                        await _userManager.UpdateAsync(tmp);
+                        return Redirect("/home/index");
+                    }
+                }
+                tmp.Basket.BasketItems.Add(new BasketItem() { Count = 1, Product = _productService.GetProductsAsync().Result.FirstOrDefault(x => x.Id == productId) });
+                await _userManager.UpdateAsync(tmp);
+            }
             return Redirect("/home/index");
         }
 

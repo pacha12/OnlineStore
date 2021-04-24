@@ -1,9 +1,15 @@
 ﻿@model OnlineStore_Domain.Models.Identity.User
 
 
-<h1 style="font-size:20px">
-    @if (User.Identity.IsAuthenticated)
+
+@if (User.Identity.IsAuthenticated)
+{
+    int Count = 0;
+    foreach (var productitem in Model.Basket.BasketItems)
     {
-        @Model.Basket.Products.Count
+        Count += productitem.Count;
     }
-</h1>
+    <h1 style="font-size:20px">
+        @Count
+    </h1>
+}

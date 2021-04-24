@@ -9,7 +9,6 @@ namespace OnlineStore_Domain.Models
     public class Order
     {
         public int Id { get; set; }
-        public IList<Product> Products { get; set; }
         public DateTime SaleDate { get; set; }
         public string DeliverySity { get; set; }
         public string deliveryAdress { get; set; }

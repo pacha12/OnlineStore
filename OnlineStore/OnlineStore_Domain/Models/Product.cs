@@ -12,8 +12,8 @@ namespace OnlineStore_Domain.Models
         {
             ProductProperties = new List<ProductProperties>();
             Reviews = new List<Review>();
-            Baskets = new List<Basket>();
-            Orders = new List<Order>();
+            BasketItems = new List<BasketItem>();
+            OrderItems = new List<OrderItem>();
         }
         public int Id { get; set; }
         public IList<ProductProperties> ProductProperties { get; set; }
@@ -25,7 +25,7 @@ namespace OnlineStore_Domain.Models
         public int Discount { get; set; }
         public int Count { get; set; }
         public string Category { get; set; }
-        public IList<Basket> Baskets { get; set; }
-        public IList<Order> Orders { get; set; }
+        public IList<BasketItem> BasketItems { get; set; }
+        public IList<OrderItem> OrderItems { get; set; }
     }
 }

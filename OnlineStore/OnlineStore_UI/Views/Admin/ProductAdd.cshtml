@@ -1,4 +1,4 @@
-﻿@model OnlineStore_Domain.Models.Product
+﻿@model OnlineStore_UI.Models.ProductViewModel
 
 <div class="row">
     <div class="col-md-4">
@@ -39,7 +39,11 @@
                 <input asp-for="Category" class="form-control" />
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="CountProperties" class="control-label"></label>
+                <input asp-for="CountProperties" class="form-control" />
+                <span asp-validation-for="CountProperties" class="text-danger"></span>
+            </div>
 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlineStore_Domain.Models.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,10 @@ namespace OnlineStore_Domain.Models
     {
         public Basket()
         {
-            Products = new List<Product>();
+            BasketItems = new List<BasketItem>();
         }
         public int Id { get; set; }
-        public IList<Product> Products { get; set; }
+        public IList<BasketItem> BasketItems { get; set; }
+        public User User { get; set; }
     }
 }

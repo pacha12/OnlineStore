@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -8,6 +9,7 @@ using OnlineStore_BLL.Services;
 using OnlineStore_BLL.Services.Interfaces;
 using OnlineStore_Core.Repositores;
 using OnlineStore_Core.Repositores.Interfaces;
+using OnlineStore_UI.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +35,13 @@ namespace OnlineStore_UI
             var option = new SendGridOptions();
             Configuration.GetSection("SendGridOptions").Bind(option);
             services.AddTransient<SendGridOptions>(x => option);
-            //services.Configure<SendGridOptions>(op => Configuration.GetSection("SendGridOptions"));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IEmailSender, EmailSender>();
+            var mappingConfig = new MapperConfiguration(mc => { mc.AddProfile(new MapperConfig()); });
+
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

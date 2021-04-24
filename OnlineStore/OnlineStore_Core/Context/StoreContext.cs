@@ -22,6 +22,7 @@ namespace OnlineStore_Core.Context
         public DbSet<Review> Reviews { get; set; }
         public DbSet<History> Historyes { get; set; }
         public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
         //protected override void OnModelCreating(ModelBuilder builder)
         //{
         //    base.OnModelCreating(builder);
